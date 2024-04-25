@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!--Link to the CSS file -->
+    <style>
+        /* Center the button vertically and horizontally */
+        #content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center vertically */
+            align-items: center; /* Center horizontally */
+            height: 100vh; /* Set the height to full viewport height */
+        }
+
+        #startGameBtn {
+            margin-top: 20px; /* Add space above the button */
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <h1>Chance's Arcade</h1>
+        <button onclick="window.location.href='/'">Home</button>
+        <button onclick="window.location.href='blackjack'">Blackjack</button>
+        <button onclick="window.location.href='eight_ball'">Magic 8 Ball</button>
+    </header>
+
+    <div id="content">
+        
+        <!-- Welcome message -->
+        <div id="welcome-section">
+            <h1>Welcome to Blackjack!</h1>
+        </div>
+        
+        <!-- Start Game button -->
+        <div id="startGameBtn">
+            <button onclick="startGame()">Start Game</button>
+        </div>
+        
+        <!-- Content will be loaded here -->
+        <div id="gameContainer">
+            
+            <!-- Content from blackjack_start.html will be loaded here -->
+        </div>
+        
+    </div>
+    
+    
+    <script>
+    /*global fetch*/
+        function startGame() {
+            
+            // Hide the welcome section and Start Game button
+            document.getElementById('welcome-section').classList.add('hidden');
+            document.getElementById('startGameBtn').classList.add('hidden');
+            
+            fetch('/start-game') // Fetch the content from the server
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('gameContainer').innerHTML = data; // Load the content into the container
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+    </script>
+</body>
+</html>

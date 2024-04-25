@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chance's Arcade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!--Link to the CSS file -->
+    <style>
+        /* Center the welcome message vertically and horizontally */
+        body {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh; /* Ensure full viewport height */
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #welcome-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Style for the buttons container */
+        .button-container {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+        }
+
+        /* Style for individual buttons */
+        .button-container button {
+            margin: 0 10px; /* Add spacing between buttons */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chance's Arcade</h1>
+        <button onclick="window.location.href='/'">Home</button>
+        <button onclick="window.location.href='blackjack'">Blackjack</button>
+        <button onclick="window.location.href='eight_ball'">Magic 8 Ball</button>
+    </header>
+
+    <!-- Your content goes here -->
+    <div id="welcome-section">
+        <h1>Welcome to Chance's Arcade!</h1>
+        <!-- Button container for Play Blackjack and Magic 8 Ball buttons -->
+        <div class="button-container">
+            <!-- Play Blackjack button added here -->
+            <form action="/blackjack" method="POST">
+                <button type="submit" name="start_blackjack">Play Blackjack</button>
+            </form>
+            <!-- Magic 8 Ball button added here -->
+            <button onclick="window.location.href='eight_ball'">Magic 8 Ball</button>
+        </div>
+    </div>
+</body>
+</html>

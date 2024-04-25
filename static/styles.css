@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 100vh; /* Ensure full viewport height */
+    background-color: #f0f0f0; /* Optional: Add background color */
+}
+
+header {
+    width: 100%;
+    background-color: #002E6D; /* Utah State Aggie Blue */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed; /* Fix the header at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure header is above other content */
+}
+
+button {
+    background-color: #00BFFF; /* Bright Blue */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px; /* Add slight rounding */
+}
+
+.content {
+    width: 80%; /* Adjust width as needed */
+    max-width: 600px; /* Optional: Limit maximum width */
+    background-color: #fff; /* Optional: Add a white background */
+    padding: 20px;
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+#inputContainer, #answerContainer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#inputContainer {
+    margin-top: 20px; /* Add space above the input container */
+}
+
+#welcome-section {
+    text-align: center;
+    margin-top: 50px; /* Adjust margin as needed */
+    margin-bottom: 20px;
+}

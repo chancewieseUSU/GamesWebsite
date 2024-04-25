@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic 8 Ball Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!--Link to the CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Magic 8 Ball Game</h1>
+        <button onclick="window.location.href='/'">Home</button>
+        <button onclick="window.location.href='blackjack'">Blackjack</button>
+        <button onclick="window.location.href='eight_ball'">Magic 8 Ball</button>
+    </header>
+
+    <div class="content">
+        <!-- Welcome message -->
+        <div id="welcome-section">
+            <h2>Welcome to the Magic 8 Ball Game!</h2>
+        </div>
+
+        <!-- Question input -->
+        <div id="inputContainer">
+            <label for="userQuestion">Enter your question:</label>
+            <input type="text" id="userQuestion" onkeypress="handleKeyPress(event)" />
+            <button onclick="submitQuestion()">Submit</button>
+        </div>
+
+        <!-- Answer display -->
+        <div id="answerContainer">
+            <h2 id="answerText"></h2>
+        </div>
+    </div>
+
+    <script>
+        // Define the Magic8Ball object
+        var Magic8Ball = {
+            answers: [
+                "Yes",
+                "No",
+                "Maybe",
+                "Try again later",
+                "Outlook not so good",
+                "Definitely",
+                "Ask again",
+                "Signs point to yes"
+            ],
+
+            getAnswer: function () {
+                var answerIndex = Math.floor(Math.random() * this.answers.length);
+                return this.answers[answerIndex];
+            },
+
+            playGame: function (question) {
+                var answer = this.getAnswer();
+                document.getElementById("answerText").innerText = "Magic 8 Ball says: " + answer;
+            }
+        };
+
+        function submitQuestion() {
+            var userQuestion = document.getElementById("userQuestion").value;
+            if (userQuestion.trim() === "") {
+                alert("Please enter a question.");
+            } else {
+                Magic8Ball.playGame(userQuestion);
+                document.getElementById("userQuestion").value = "";
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                submitQuestion();
+            }
+        }
+    </script>
+</body>
+</html>

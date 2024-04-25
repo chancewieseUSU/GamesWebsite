@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!--Link to the CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Blackjack</h1>
+        <button onclick="window.location.href='/'">Home</button>
+        <button onclick="window.location.href='blackjack'">Blackjack</button>
+        <button onclick="window.location.href='othergame'">Other Game</button>
+    </header>
+
+    <div id="content">
+        <form action="/blackjack_pt1" method="POST">
+            <div id="welcome-section" style="margin-top: 20px;">
+                <h1>Welcome to Blackjack!</h1>
+                <p id="ucardDisplay"></p>
+                <p id="ucard2Display"></p>
+                <p id="uscoreDisplay"></p>
+            </div>
+        </form>
+        <form id="hitStandForm" action="/blackjack_pt2" method="POST">
+                <h3>Would you like to hit or stand?</h3>
+                <button type="submit" name="hitstand" value="h">Hit</button>
+                <button type="submit" name="hitstand" value="s">Stand</button>
+        </form>
+        
+        
+        
+        <!-- Default Variables -->
+        <form id="default" action="/blackjack" method="POST">
+        <input type="text" name="hitstand_default" value=''><br>
+        </form>
+        
+        <!--<div id="output2" style="margin-top: 20px;">-->
+        <!--    {% if ucard_display %}-->
+        <!--    {{ ucard_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if ucard2_display %}-->
+        <!--    {{ ucard2_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if uscore_display %}-->
+        <!--    {{ uscore_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--</div>-->
+        
+        
+        
+        
+        <!-- Output from Python script will be displayed here -->
+        <!--<div id="output" style="margin-top: 20px;">-->
+            
+            
+            <!--<form id="hitStandForm" action="/blackjack" method="POST">-->
+            <!--    <h3>Would you like to hit or stand?</h3>-->
+            <!--    <button type="submit" name="hitstand" value="h">Hit</button>-->
+            <!--    <button type="submit" name="hitstand" value="s">Stand</button>-->
+            <!--</form>-->
+                
+        <!--    {% if ucard_new_display %}-->
+        <!--    {{ ucard_new_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if user_busted_display %}-->
+        <!--    {{ user_busted_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if dcard_display %}-->
+        <!--    {{ dcard_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if dcard2_display %}-->
+        <!--    {{ dcard2_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if dscore_display %}-->
+        <!--    {{ dscore_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if dealer_hit_display %}-->
+        <!--    {{ dealer_hit_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if uscore_final_display %}-->
+        <!--    {{ uscore_final_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if dscore_final_display %}-->
+        <!--    {{ dscore_final_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if dealer_busted_display %}-->
+        <!--    {{ dealer_busted_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if dealer_score_wins_display %}-->
+        <!--    {{ dealer_score_wins_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if user_score_wins_display %}-->
+        <!--    {{ user_score_wins_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if uwincount_display %}-->
+        <!--    {{ uwincount_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if dwincount_display %}-->
+        <!--    {{ dwincount_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if uwins_display %}-->
+        <!--    {{ uwins_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if dwins_display %}-->
+        <!--    {{ dwins_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if tie_display %}-->
+        <!--    {{ tie_display|safe }}-->
+        <!--    {% endif %}-->
+            
+        <!--    {% if thanks_display %}-->
+        <!--    {{ thanks_display|safe }}-->
+        <!--    {% endif %}-->
+        <!--</div>-->
+        
+    </div>
+    
+    <form id="play-again-form" action="/blackjack" method="POST" style="display: none;">
+        <h3>Would you like to play again?</h3>
+        <button type="submit" name="playagain" value="y">Yes</button>
+        <button type="submit" name="playagain" value="n">No</button>
+    </form>
+
+    <script>
+        /*global fetch*/
+        // Fetch the JSON data from Flask route
+        fetch('/blackjack_pt2')
+            .then(response => response.json())
+            .then(data => {
+                // Update the HTML content with the received variable values
+                document.getElementById('ucardDisplay').innerText = data.ucard_display;
+                document.getElementById('ucard2Display').innerText = data.ucard2_display;
+                document.getElementById('uscoreDisplay').innerText = data.uscore_display;
+                // Update other HTML elements with respective data fields
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+    <script>
+        function startBlackjack() {
+            document.getElementById('welcome-section').style.display = 'none'; // Hide welcome section
+            document.getElementById('hitStandForm').style.display = 'block'; // Show hit/stand form
+        }
+    </script>
+</body>
+</html>

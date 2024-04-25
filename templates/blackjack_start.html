@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!--Link to the CSS file -->
+</head>
+
+<body>
+
+<div id="output" style="margin-top: 20px;">
+    <p>Card number 1 is: {{ ucard.face }} of {{ ucard.suit }}</p>
+    <p>Card number 2 is: {{ ucard2.face }} of {{ ucard2.suit }}</p>
+    <p>Your current score is: {{uscore}}</p>
+    
+    <!-- Button for hit or stand -->
+    <div id="hitOrStandBtns">
+        <h3>Would you like to hit or stand?</h3>
+        <form action="{{ url_for('hit_or_stand', deck=deck) }}" method="POST">
+            <input type="hidden" name="hitstand" value="h">
+            <button type="submit">Hit</button>
+        </form>
+        <form action="{{ url_for('hit_or_stand', deck=deck) }}" method="POST">
+            <input type="hidden" name="hitstand" value="s">
+            <button type="submit">Stand</button>
+        </form>
+    </div>
+    
+
+
+    
+    
+    
+    
+    <div id="hit-section" style="display: none;">
+    <!-- Data from hitOrStand will be displayed here -->
+    </div>
+    
+    
+</div>
+
+</body>
+
+</html>
+
+
+<!--<script>-->
+
+<!--    function hitOrStand(hit_stand) {-->
+        
+
+<!--        document.getElementById('hitOrStandBtns').classList.add('hidden');-->
+        
+        
+        
+<!--        fetch('/hit-or-stand', {-->
+<!--            method: 'POST',-->
+<!--            headers: {-->
+<!--                'Content-Type': 'application/json',-->
+<!--            },-->
+<!--            body: JSON.stringify({ hitstand: hit_stand }),-->
+<!--        })-->
+<!--        .then(response => response.text())-->
+<!--        .then(data => {-->
+<!--            document.getElementById('hit-section').innerHTML = data;-->
+<!--        })-->
+<!--        .catch(error => console.error('Error:', error));-->
+<!--    }-->
+<!--</script>-->
+
+    
+    
+    
+<!--</body>-->
+
+<!--</html>-->
+
+
+
+
+
+    <!--<form id="hitStandForm" action="/blackjack" method="POST">-->
+    <!--    <h3>Would you like to hit or stand?</h3>-->
+    <!--    <button type="submit" name="hitstand" value="h">Hit</button>-->
+    <!--    <button type="submit" name="hitstand" value="s">Stand</button>-->
+    <!--</form>-->
